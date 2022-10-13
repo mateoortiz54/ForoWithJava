@@ -9,13 +9,13 @@
 <body>
     <div th:object="${usuario}" th:remove="tag">
         <ul th:if="${#fields.hasErrors('*')}" >
-            <li th:each="err:${#fields.errors('*')}" th:text="${err}"> 
-
-            </li>
+            <li th:each="err:${#fields.errors('*')}" th:text="${err}"> </li>
         </ul>
     </div>
     
     <form th:action="@{/addUsuario}" th:object="${usuario}" method="post">
+
+        <input type="hidden" th:field="*{id}"><br>
 
         <label for="nombre">Nombre</label>
         <input type="text" th:field="*{Nombre}" name="nombre"><br>

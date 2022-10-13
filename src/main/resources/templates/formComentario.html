@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+    <div th:object="${comentario}" th:remove="tag">
+        <ul th:if="${#fields.hasErrors('*')}" >
+            <li th:each="err:${#fields.errors('*')}" th:text="${err}"> </li>
+        </ul>
+    </div>
+    
+    <form th:action="@{/addComentario}" th:object="${comentario}" method="post">
+
+        <input type="hidden" th:field="*{id}"><br>
+
+        <label for="idUsuario">id del Usuario</label>
+        <input type="number" th:field="*{idUsuario}" name="idUsuario"><br>
+
+        <label for="Respuesta">Respuesta</label>
+        <textarea name="Respuesta" th:field="*{Respuesta}" cols="30" rows="10"></textarea>
+        
+        <label for="idPublicacion">id de la Publicacion</label>
+        <input type="number" th:field="*{idPublicacion}" name="idPublicacion"><br>
+
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>

@@ -8,10 +8,10 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.projectjava.Models.Entity.Usuario;
+import com.example.projectjava.Models.Entity.Respuesta;
 
-@Repository("UsuarioDaoJPA")
-public class UsuarioDaoImp implements IUsuarioDao{
+@Repository("RespuestaDaoJPA")
+public class RespuestaDaoImp implements IRespuestaDao{
 
     @PersistenceContext
     private EntityManager em;
@@ -19,34 +19,34 @@ public class UsuarioDaoImp implements IUsuarioDao{
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     @Override
-    public List<Usuario> findAll() {
-        return em.createQuery("from Usuario").getResultList();
+    public List<Respuesta> findAll() {
+        return em.createQuery("from Respuesta").getResultList();
     }
 
     @Override
     @Transactional
-    public void save(Usuario usuario) {
+    public void save(Respuesta respuesta) {
 
         
-        if(usuario.getId() != null && usuario.getId()>0){
-            em.merge(usuario);
+        if(respuesta.getId() != null && respuesta.getId()>0){
+            em.merge(respuesta);
         }else{
-            em.persist(usuario);
+            em.persist(respuesta);
         }
         
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Usuario findOne(Long id) {
-        return em.find(Usuario.class, id);
+    public Respuesta findOne(Long id) {
+        return em.find(Respuesta.class, id);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
-        Usuario usuario = findOne(id);
-        em.remove(usuario);
+        Respuesta respuesta = findOne(id);
+        em.remove(respuesta);
     }
     
 }

@@ -45,6 +45,7 @@ public class UsuarioController {
 
     @RequestMapping(value="/addUsuario", method= RequestMethod.POST)
     public String guardarUsuario(@Valid Usuario usuario, BindingResult result, Model model){
+
         if(result.hasErrors()){
             model.addAttribute("titulo", "Bienvenido de nuevo al form, hubo un error");
             return "formUsuario";
@@ -60,7 +61,7 @@ public class UsuarioController {
         Usuario usuario = null;
 
         if(id>0){
-            usuarioService.findOne(id);
+            usuario = usuarioService.findOne(id);
         }else{
             return "redirect:listar";
         }
@@ -68,7 +69,17 @@ public class UsuarioController {
         model.put("usuario", usuario);
         model.put("titulo", "editando un usuario");
 
-        return "formUpdateUsuario";
+        return "formUsuario";
+    }
+
+
+    @GetMapping("/eliminarUsuario/{id}")
+    public String eliminar(@PathVariable Long id){
+        if(id>0){
+            usuarioService.delete(id);
+        }
+        return "redirect:/listar";
+        
     }
 
 }

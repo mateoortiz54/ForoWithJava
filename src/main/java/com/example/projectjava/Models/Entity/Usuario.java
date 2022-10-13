@@ -17,7 +17,7 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long Id;
 
     @NotNull
     private long Telefono;
@@ -35,11 +35,11 @@ public class Usuario implements Serializable {
     @Email
     private String Email;
 
-    public long getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         Id = id;
     }
 

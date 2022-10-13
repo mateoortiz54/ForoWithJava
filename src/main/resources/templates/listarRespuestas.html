@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+    <table border="1">
+        <thead class="table-dark">
+            <th>Id De la Respuesta</th>
+            <th>Id del comentario</th>
+            <th>Id del usuario</th>
+            <th>Respuesta del comentario</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </thead>
+        <tbody>
+            <tr th:each="respuesta: ${respuestas}">
+                <td th:text="${respuesta.id}"></td>
+                <td th:text="${respuesta.idComentario}"></td>
+                <td th:text="${respuesta.idUsuario}"></td>
+                <td th:text="${respuesta.respuestaComentario}"></td>
+                <td><a th:href="@{/formRespuesta/} + ${respuesta.id}">Editar</a></td>
+                <td><a th:href="@{/eliminarRespuesta/} + ${respuesta.id}" onclick="return confirm('¿Esta seguro de eliminar el registro?')">Eliminar</a></td> 
+                    
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/formRespuesta}">Crear Respuesta</a>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+    <table border="1">
+        <thead class="table-dark">
+            <th>Id De la Publicacion</th>
+            <th>Id del usuario</th>
+            <th>Respuesta</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </thead>
+        <tbody>
+            <tr th:each="publicacion: ${publicaciones}">
+                <td th:text="${publicacion.id}"></td>
+                <td th:text="${publicacion.idUsuario}"></td>
+                <td th:text="${publicacion.Asunto}"></td>
+                <td><a th:href="@{/formPublicacion/} + ${publicacion.id}">Editar</a></td>
+                <td><a th:href="@{/eliminarPublicacion/} + ${publicacion.id}" onclick="return confirm('¿Esta seguro de eliminar el registro?')">Eliminar</a></td> 
+                    
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/formPublicacion}">Crear Publicacion</a>
+</body>
+</html>
